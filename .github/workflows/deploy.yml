@@ -37,9 +37,11 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-
-      - name: Add Services page fallback
-        run: cp dist/index.html dist/404.html
+      - name: Prepare Services page
+        run: |
+          mkdir -p dist/services
+          cp dist/index.html dist/services/index.html
+          cp dist/index.html dist/404.html
 
       - name: Upload website
         uses: actions/upload-pages-artifact@v3

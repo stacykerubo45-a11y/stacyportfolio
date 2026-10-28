@@ -154,9 +154,7 @@ function ServicesPage() {
               <a className="button button-dark" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                 Discuss a project <ServiceIcon name="arrow" size={17} />
               </a>
-              <a className="button button-outline" href={`${BASE_URL}#work`} onClick={closeMenu}>
-                View selected work
-              </a>
+              <a className="button button-outline" href={`${BASE_URL}#work`}>View selected work</a>
             </div>
             <div className="services-hero-foot"><span>01 / DISCOVER</span><span>02 / DESIGN & BUILD</span><span>03 / IMPROVE</span></div>
           </div>
@@ -206,7 +204,7 @@ function ServicesPage() {
         </section>
 
         <section className="service-fit-section section">
-          <div className="service-fit-copy"><span className="section-kicker">WORKING TOGETHER</span><h2>A good project<br /><em>starts with clarity.</em></h2><p>Before I start building, we align on your goal, the people the website needs to serve, the features that matter, and a realistic budget and delivery plan.</p><a href="/#work" className="text-link">Explore selected work <ServiceIcon name="arrow" size={16} /></a></div>
+          <div className="service-fit-copy"><span className="section-kicker">WORKING TOGETHER</span><h2>A good project<br /><em>starts with clarity.</em></h2><p>Before I start building, we align on your goal, the people the website needs to serve, the features that matter, and a realistic budget and delivery plan.</p><a href={`${BASE_URL}#work`} className="text-link">Explore selected work <ServiceIcon name="arrow" size={16} /></a></div>
           <div className="service-fit-points">
             <article><span>01</span><div><h3>Clear deliverables</h3><p>We agree on the pages, features and final handover in writing.</p></div></article>
             <article><span>02</span><div><h3>Practical communication</h3><p>Progress, questions and decisions are handled at agreed checkpoints.</p></div></article>
@@ -219,7 +217,7 @@ function ServicesPage() {
           <div className="service-contact-copy"><span className="section-kicker">HAVE SOMETHING IN MIND?</span><h2>Let's talk about<br /><em>your project.</em></h2><p>Share a little about your business, your idea or the website you want to improve. We can discuss the scope and the best next step.</p><a className="button button-orange" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">Start a conversation <ServiceIcon name="arrow" size={17} /></a><small>Remember to update the WhatsApp link with your number before publishing.</small></div>
         </section>
       </main>
-      <footer className="site-footer"><a className="footer-brand" href="/">STACY GEKARA<span> / WEB DEVELOPER</span></a><span>Designed and built with care · © {new Date().getFullYear()}</span><a href="#top" className="back-top">BACK TO TOP ↑</a></footer>
+      <footer className="site-footer"><a className="footer-brand" href={BASE_URL}>STACY GEKARA<span> / WEB DEVELOPER</span></a><span>Designed and built with care · © {new Date().getFullYear()}</span><a href="#top" className="back-top">BACK TO TOP ↑</a></footer>
     </div>
   );
 }

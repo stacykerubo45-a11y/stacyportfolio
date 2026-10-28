@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './Services.css';
+const BASE_URL = import.meta.env.BASE_URL;
+
 
 const WHATSAPP_LINK = 'https://wa.me/254717024521?text=Hello%20Stacy,%20I%20want%20to%20discuss%20a%20project%20with%20you.'; // Replace with your WhatsApp number before publishing.
 const GITHUB_LINK = 'https://github.com/stacykerubo45-a11y';
@@ -110,7 +112,7 @@ function SiteHeader({ menuOpen, setMenuOpen }) {
         </div>
       </div>
       <header className="main-header">
-        <a className="brand" href="/" aria-label="Stacy Gekara home" onClick={closeMenu}>
+        <a className="brand" href={BASE_URL} aria-label="Stacy Gekara home" onClick={closeMenu}>
           <span className="brand-mark">S<span>G</span></span>
           <span className="brand-copy"><strong>STACY GEKARA</strong><small>WEB DEVELOPER</small></span>
         </a>
@@ -124,12 +126,12 @@ function SiteHeader({ menuOpen, setMenuOpen }) {
           <ServiceIcon name={menuOpen ? 'close' : 'menu'} size={23} />
         </button>
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
-          <a href="/" onClick={closeMenu}>Home</a>
-          <a className="is-active" href="/services" aria-current="page" onClick={closeMenu}>Services</a>
-          <a href="/#work" onClick={closeMenu}>Selected Work</a>
-          <a href="/#about" onClick={closeMenu}>About</a>
-          <a href="/#contact" onClick={closeMenu}>Contact</a>
-          <a className="nav-cta" href="#service-contact" onClick={closeMenu}>Let's Talk <ServiceIcon name="arrow" size={16} /></a>
+          <a href={BASE_URL} onClick={closeMenu}>Home</a>
+          <a className="is-active" href={`${BASE_URL}services/`} aria-current="page" onClick={closeMenu}>Services</a>
+          <a href={`${BASE_URL}#work`} onClick={closeMenu}>Selected Work</a>
+          <a href={`${BASE_URL}#about`} onClick={closeMenu}>About</a>
+          <a href={`${BASE_URL}#contact`} onClick={closeMenu}>Contact</a>
+          <a className="nav-cta" href={`${BASE_URL}#service-contact`} onClick={closeMenu}>Let's Talk <ServiceIcon name="arrow" size={16} /></a>
         </nav>
       </header>
     </>
@@ -152,7 +154,9 @@ function ServicesPage() {
               <a className="button button-dark" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                 Discuss a project <ServiceIcon name="arrow" size={17} />
               </a>
-              <a className="button button-outline" href="/#work">View selected work</a>
+              <a className="button button-outline" href={`${BASE_URL}#work`} onClick={closeMenu}>
+                View selected work
+              </a>
             </div>
             <div className="services-hero-foot"><span>01 / DISCOVER</span><span>02 / DESIGN & BUILD</span><span>03 / IMPROVE</span></div>
           </div>

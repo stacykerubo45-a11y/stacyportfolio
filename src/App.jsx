@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import ServicesPage from './ServicesPage.jsx';
+const BASE_URL = import.meta.env.BASE_URL;
+const BASE_PATH = BASE_URL.replace(/\/$/, '');
 
 // TODO: Replace this with your real WhatsApp number in international format.
 // Example: const WHATSAPP_LINK = 'https://wa.me/2547XXXXXXXX';
@@ -44,7 +46,7 @@ const projects = [
     description:
       'A web application for managing contacts, SMS messaging, scheduling, templates, and messaging activity.',
     tags: ['React', 'Node.js', 'MongoDB'],
-    image: '/images/salhiya.webp',
+    image: `${BASE_URL}images/salhiya.webp`,
     imageAlt: 'Cargo messaging application dashboard',
   },
   {
@@ -54,7 +56,7 @@ const projects = [
     description:
       'A responsive product catalogue designed to help customers browse products and enquire about available items.',
     tags: ['React', 'SQL', 'Responsive Design'],
-    image: '/images/dheer.webp',
+    image: `${BASE_URL}images/dheer.webp`,
     imageAlt: 'Dheer Distributors product catalogue website',
   },
   {
@@ -64,7 +66,7 @@ const projects = [
     description:
       'A restaurant website concept featuring an elegant visual identity, menu highlights, and clear customer calls to action.',
     tags: ['React', 'JavaScript', 'CSS'],
-    image: '/images/akira.webp',
+    image: `${BASE_URL}images/akira.webp`,
     imageAlt: 'Akira Restaurant website design',
   },
 ];
@@ -91,18 +93,21 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
-  const navItems = [
-    ['Home', '/'],
-    ['Services', '/services'],
-    ['Selected Work', '/#work'],
-    ['About', '/#about'],
-    ['Contact', '/#contact'],
-  ];
-
+ const navItems = [
+  ['Home', BASE_URL],
+  ['Services', `${BASE_URL}services/`],
+  ['Selected Work', `${BASE_URL}#work`],
+  ['About', `${BASE_URL}#about`],
+  ['Contact', `${BASE_URL}#contact`],
+];
   // A dedicated Services page is served at /services.
-  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
-  if (currentPath === '/services') return <ServicesPage />;
+  const currentPath = window.location.pathname
+  .replace(BASE_PATH, '')
+  .replace(/\/$/, '') || '/';
 
+if (currentPath === '/services') {
+  return <ServicesPage />;
+}
   return (
     <div className="site-shell">
       <div className="top-strip">
@@ -122,7 +127,7 @@ function App() {
       </div>
 
       <header className="main-header">
-        <a className="brand" href="/" aria-label="Stacy Gekara home" onClick={closeMenu}>
+        <a className="brand" href={BASE_URL} aria-label="Stacy Gekara home" onClick={closeMenu}>
           <span className="brand-mark">S<span>G</span></span>
           <span className="brand-copy"><strong>STACY GEKARA</strong><small>WEB DEVELOPER</small></span>
         </a>
@@ -141,7 +146,7 @@ function App() {
           {navItems.map(([label, href]) => (
             <a key={label} href={href} onClick={closeMenu}>{label}</a>
           ))}
-          <a className="nav-cta" href="/#contact" onClick={closeMenu}>Let's Talk <Icon name="arrow" size={16} /></a>
+          <a className="nav-cta" href={`${BASE_URL}#contact`} onClick={closeMenu} >Let's Talk <Icon name="arrow" size={16} /></a>
         </nav>
       </header>
 
@@ -152,8 +157,8 @@ function App() {
             <h1>I build websites that help <span>businesses grow.</span></h1>
             <p className="hero-description">I’m Stacy, a web developer creating responsive business websites, landing pages, and web applications with thoughtful design and practical functionality.</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="#work">Explore my work <Icon name="arrow" size={17} /></a>
-              <a className="button button-outline" href="#contact">Let's talk</a>
+              <a className="button button-dark" href={`${BASE_URL}#work`}>Explore my work <Icon name="arrow" size={17} /></a>
+              <a className="button button-outline" href={`${BASE_URL}#contact`}>Let's talk</a>
             </div>
             <div className="hero-bottom-row">
               <div className="social-links" aria-label="Social links">
@@ -162,7 +167,7 @@ function App() {
                 <a href={LINKEDIN_LINK} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size={17} /></a>
                <p>phone: +254 717 024 521</p>
               </div>
-              <a className="scroll-cue" href="#services"><span className="scroll-cue-circle"><Icon name="down" size={15} /></span> SCROLL TO EXPLORE</a>
+              <a className="scroll-cue" href={`${BASE_URL}#services`}><span className="scroll-cue-circle"><Icon name="down" size={15} /></span> SCROLL TO EXPLORE</a>
             </div>
           </div>
 

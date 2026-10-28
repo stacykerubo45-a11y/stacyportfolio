@@ -452,3 +452,291 @@
   .hero-image { animation: none; }
   .button, .nav-cta, .text-link svg, .service-card, .project-card { transition: none; }
 }
+/* =========================================================
+   HOMEPAGE ANIMATIONS
+========================================================= */
+
+.home-page .top-strip {
+  animation: homeFadeDown 0.45s ease both;
+}
+
+.home-page .main-header {
+  animation: homeFadeDown 0.55s 0.05s ease both;
+}
+
+/* Scroll reveal */
+
+.home-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.home-page [data-reveal="left"] {
+  transform: translateX(-28px);
+}
+
+.home-page [data-reveal="right"] {
+  transform: translateX(28px);
+}
+
+.home-page [data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* =========================================================
+   HERO IMAGE LOADING
+========================================================= */
+
+.home-page .hero-image-panel {
+  isolation: isolate;
+}
+
+.home-page .hero-image-skeleton {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    #292b30 8%,
+    #42454b 18%,
+    #292b30 33%
+  );
+  background-size: 220% 100%;
+  animation: homeShimmer 1.4s linear infinite;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+.home-page .hero-image {
+  z-index: 1;
+  opacity: 0;
+  transition:
+    opacity 0.55s ease,
+    transform 0.9s ease;
+  animation: none;
+}
+
+.home-page .hero-image-panel.is-image-loaded .hero-image {
+  opacity: 1;
+  animation: homeImageEnter 0.7s ease both;
+}
+
+.home-page
+.hero-image-panel.is-image-loaded
+.hero-image-skeleton {
+  opacity: 0;
+  visibility: hidden;
+  animation: none;
+}
+
+.home-page .hero-image-panel.is-image-error .hero-image-skeleton {
+  animation: none;
+  background: #30251f;
+}
+
+.home-page .hero-image-fallback {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+
+.home-page .image-shade {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.home-page .image-caption,
+.home-page .floating-note,
+.home-page .image-index {
+  z-index: 3;
+}
+
+/* =========================================================
+   PROJECT SCREENSHOT LOADING
+========================================================= */
+
+.home-page .project-visual {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 0;
+  background: #f4f2ed;
+}
+
+.home-page .project-image-skeleton {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    #e9e6df 8%,
+    #f8f6f2 18%,
+    #e9e6df 33%
+  );
+  background-size: 220% 100%;
+  animation: homeShimmer 1.4s linear infinite;
+}
+
+.home-page .project-screenshot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    transform 0.4s ease;
+}
+
+.home-page .project-screenshot.is-loaded {
+  opacity: 1;
+}
+
+.home-page .project-visual.is-image-loaded .project-image-skeleton {
+  opacity: 0;
+  visibility: hidden;
+  animation: none;
+}
+
+.home-page .project-image-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  color: #5d626c;
+  background: #f4f2ed;
+  font-size: 12px;
+  text-align: center;
+}
+
+.home-page .project-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.home-page .project-card:hover {
+  transform: translateY(-4px);
+}
+
+.home-page .project-card:hover .project-screenshot.is-loaded {
+  transform: scale(1.015);
+}
+
+/* =========================================================
+   BUTTON AND LINK INTERACTIONS
+========================================================= */
+
+.home-page .button,
+.home-page .nav-cta,
+.home-page .top-cta,
+.home-page .social-links a {
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.home-page .button:hover {
+  transform: translateY(-3px);
+}
+
+.home-page .social-links a:hover {
+  transform: translateY(-2px);
+}
+
+.home-page a svg {
+  transition: transform 0.25s ease;
+}
+
+.home-page a:hover svg {
+  transform: translateX(3px);
+}
+
+.home-page a:focus-visible,
+.home-page button:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+@keyframes homeFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes homeImageEnter {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes homeShimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .home-page [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .home-page .hero-image-skeleton,
+  .home-page .project-image-skeleton {
+    animation: none !important;
+  }
+}
